@@ -10,7 +10,7 @@ falls under the [CC-BY-SA](./LICENSE).
 
 ## Building
 
-In Linux, just run GNU Make:
+Run GNU Make:
 ```
 $ make
 ```
@@ -22,8 +22,8 @@ This will output the library `libnumcpus.so`
 
 In the environment scope in which you execute your Java application, set
 the enviroment variable `_NUM_CPUS` to the value of the number of CPUs
-that you want to visualize to Java. Then set the path in `LD_PRELOAD` to
-the `libnumcpus.so` library. For example:
+that you want to visualize to Java. Then set the path in `LD_PRELOAD` 
+(or `LD_PRELOAD64` on SmartOS) to the `libnumcpus.so` library. For example:
 
 ```java
 public class AvailableProcessors {
