@@ -23,7 +23,7 @@ This will output the library `libnumcpus.so`
 In the environment scope in which you execute your Java application, set
 the enviroment variable `_NUM_CPUS` to the value of the number of CPUs
 that you want to visualize to Java. Then set the path in `LD_PRELOAD` 
-(or `LD_PRELOAD64` on SmartOS) to the `libnumcpus.so` library. For example:
+(or `LD_PRELOAD_64` on illumos/SmartOS/Solaris) to the `libnumcpus.so` library. For example:
 
 ```java
 public class AvailableProcessors {
