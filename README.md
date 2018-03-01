@@ -37,3 +37,13 @@ public class AvailableProcessors {
 $ LD_PRELOAD=/path/to/libnumcpus.so _NUM_CPUS=2 java AvailableProcessors
 2
 ```
+
+## Determining Number of CPUs Base on CPU CAP
+
+Included in this repository is a [script](./proclimit.sh) that will query a zone to find out a non-pathological (and non-optimized) value for the number of CPU cores to run an application with. This utility can be combined with the `libnumcpus` as so:
+```bash
+#!/usr/bin/env sh
+
+# This shell script launches my application
+LD_PRELOAD=/path/to/libnumcpus.so _NUM_CPUS=$(/path/to/proclimit.sh) java AvailableProcessors
+```
