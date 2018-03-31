@@ -15,7 +15,7 @@
 # directory
 
 if [ -d /native ]; then
-  PATH=/native/sbin:/native/usr/bin:/native/sbin:$PATH
+  PATH=$PATH:/native/sbin:/native/usr/bin:/native/sbin
 fi
 
 KSH="$(which ksh93)"
@@ -23,6 +23,12 @@ PRCTL="$(which prctl)"
 
 if [ -n "${KSH}" ] && [ -n "${PRCTL}" ]; then
   CAP=$(${KSH} -c "echo \$((\$(${PRCTL} -n zone.cpu-cap -P \$\$ | grep privileged | awk '{ print \$3; }') / 100))")
+
+  # Always show at least one processor
+  if [ ${CAP} -lt 1 ]; then
+    echo 1
+    exit 0
+  fi
 
   # If there is no cap set, then we will fall through and use the other functions
   # to determine the maximum processes.
